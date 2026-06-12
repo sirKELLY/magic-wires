@@ -1,0 +1,25 @@
+{
+  "formatVersion": 1,
+  "nodes": [
+    { "id": "src", "type": "source", "config": { "productionRate": 10.0, "capacity": null } },
+    { "id": "split", "type": "splitter", "config": { "weights": [5.0, 1.0, 1.0], "capacity": null } },
+    { "id": "sw1", "type": "switch", "config": { "open": true, "capacity": null } },
+    { "id": "gate1", "type": "gate", "config": { "threshold": 30.0, "capacity": null } },
+    { "id": "sink1", "type": "sink", "config": { "cost": 5.0, "capacity": null } },
+    { "id": "gate2", "type": "gate", "config": { "threshold": 7.0, "capacity": null } },
+    { "id": "sw2", "type": "switch", "config": { "open": true, "capacity": null } },
+    { "id": "merge", "type": "merger", "config": { "capacity": null } },
+    { "id": "sink2", "type": "sink", "config": { "cost": 3.0, "capacity": null } }
+  ],
+  "edges": [
+    { "from": "src", "fromPort": 0, "to": "split", "toPort": 0, "throughputCap": null },
+    { "from": "split", "fromPort": 0, "to": "sw1", "toPort": 0, "throughputCap": null },
+    { "from": "split", "fromPort": 1, "to": "gate2", "toPort": 0, "throughputCap": null },
+    { "from": "split", "fromPort": 2, "to": "sw2", "toPort": 0, "throughputCap": null },
+    { "from": "sw1", "fromPort": 0, "to": "gate1", "toPort": 0, "throughputCap": null },
+    { "from": "gate1", "fromPort": 0, "to": "sink1", "toPort": 0, "throughputCap": null },
+    { "from": "gate2", "fromPort": 0, "to": "merge", "toPort": 0, "throughputCap": null },
+    { "from": "sw2", "fromPort": 0, "to": "merge", "toPort": 1, "throughputCap": null },
+    { "from": "merge", "fromPort": 0, "to": "sink2", "toPort": 0, "throughputCap": null }
+  ]
+}
